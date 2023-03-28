@@ -1,0 +1,17 @@
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\bin\Debug\net6.0\CommunityInvestment.Data.deps.json
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\bin\Debug\net6.0\CommunityInvestment.Data.runtimeconfig.json
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\bin\Debug\net6.0\CommunityInvestment.Data.dll
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\bin\Debug\net6.0\CommunityInvestment.Data.pdb
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\bin\Debug\net6.0\CommunityInvestment.Models.dll
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\bin\Debug\net6.0\CommunityInvestment.Models.pdb
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\CommunityInvestment.Data.csproj.AssemblyReference.cache
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\CommunityInvestment.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\CommunityInvestment.Data.AssemblyInfoInputs.cache
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\CommunityInvestment.Data.AssemblyInfo.cs
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\CommunityInvestment.Data.csproj.CoreCompileInputs.cache
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\CommunityInvestment.Data.csproj.CopyComplete
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\CommunityInvestment.Data.dll
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\refint\CommunityInvestment.Data.dll
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\CommunityInvestment.Data.pdb
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\CommunityInvestment.Data.genruntimeconfig.cache
+C:\Users\pci101\Desktop\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment\CommunityInvestment.Data\obj\Debug\net6.0\ref\CommunityInvestment.Data.dll

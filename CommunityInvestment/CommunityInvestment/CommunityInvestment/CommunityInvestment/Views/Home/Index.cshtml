@@ -1,0 +1,55 @@
+﻿@model CommunityInvestment.Models.ViewModel.FilterViewModel
+
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+
+<!-- Mission View -->
+<div class="container con-p" style="max-height: 1934px;">
+    <div class="container-fluid gap-0 py-2">
+        <div class="d-flex flex-wrap justify-content-between align-items-center">
+
+            <header style="color: #414141; font-size: 28px;">
+                <span style="color: #414141; font-size: 24px;">Explore</span>
+                <div id="missionCountContainer">
+                    <span id="missionCount">@Model.missionCount</span>
+                </div>
+            </header>
+
+
+            <div class="d-flex justify-content-end align-items-center">
+                <select id="sortkey" class="form-select form-select-lg mx-5" aria-label=".form-select-lg example"
+                        style="border-radius: 3px; font-size: 14px; color:#414141 ;width: 171px; box-shadow: 0.97px 0.26px 3px #0000000D; border: 1px solid #D9D9D9;">
+                    <option selected disabled>Sort by</option>
+                    <option value="1">Newest</option>
+                    <option value="2">Oldest</option>
+                    <option value="3">Lowest available seats</option>
+                    <option value="4">Highest available seats</option>
+                    <option value="5">Short by my favorite</option>
+                    <option value="6">Short by deadline</option>
+                </select>
+                <div class="d-flex justify-content-evenly align-items-center" style="width: 85px;
+                    height: 48px;">
+                    <a class="btn-grid m-2 hide"><img src="~/Assets/grid.png"></a>
+                    <a class="btn-list hide"><img src="~/Assets/list.png"></a>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="m123456">
+
+            <partial name="_MissionsPartial" model="Model" />
+            <div id="pagination-controls"></div>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+

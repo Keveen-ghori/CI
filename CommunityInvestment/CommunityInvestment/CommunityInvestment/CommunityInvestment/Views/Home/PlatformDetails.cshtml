@@ -1,0 +1,1098 @@
+﻿@using System.Text.RegularExpressions;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Volunteer";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+
+}
+
+
+
+@model CommunityInvestment.Models.spModels.MissionDetails
+
+@{
+    bool isUserApplied = Model.is_applied;
+
+    bool disableButton = !(isUserApplied);
+
+    string goalText = Model.goal_objective_text;
+    int achievedValue = 0;
+
+    Match match = Regex.Match(goalText, @"\d+");
+    if (match.Success)
+    {
+        achievedValue = int.Parse(match.Value);
+    }
+
+
+
+
+}
+
+<!-- Volunteer Page -->
+
+<div class="container g-0">
+    <div class="container" style="max-height: 1613px;">
+        <div class="row">
+            <div class="col-lg-7 g-0">
+                <div class="image d-flex flex-column h-100">
+                    <img src="~/Assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png"
+                         id="image-area" class="w-100 h-100" />
+                    <div id="carousel-bottom" class="carousel slide">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row p-1">
+                                    <div class="col-3 p-1">
+                                        <img src="~/Assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+                                             class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                                             height="120px" role="img" onclick="display(this)">
+                                    </div>
+                                    <div class="col-3 p-1">
+                                        <img src="~/Assets/Education-Supplies-for-Every--Pair-of-Shoes-Sold.png"
+                                             class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                                             height="120" role="img" onclick="display(this)">
+                                    </div>
+                                    <div class="col-3 p-1">
+                                        <img src="~/Assets/Grow-Trees-On-the-path-to-environment-sustainability.png"
+                                             class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                                             height="120" role="img" onclick="display(this)">
+                                    </div>
+                                    <div class="col-3 p-1">
+                                        <img src="~/Assets/Nourish-the-Children-in--African-country.png"
+                                             class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                                             height="120" role="img" onclick="display(this)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row p-1">
+                                    <div class="col-3 p-1">
+                                        <img src="~/Assets/Nourish-the-Children-in--African-country.png"
+                                             class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                                             width="175" height="120" role="img" onclick="display(this)">
+                                    </div>
+                                    <div class="col-3 p-1">
+                                        <img src="~/Assets/Plantation-and-Afforestation-programme.png"
+                                             class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                                             width="175" height="120" role="img" onclick="display(this)">
+                                    </div>
+                                    <div class="col-3 p-1">
+                                        <img src="~/Assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
+                                             class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                                             width="175" height="120" role="img" onclick="display(this)">
+                                    </div>
+                                    <div class="col-3 p-1">
+                                        <img src="~/Assets/Plantation-and-Afforestation-programme.png"
+                                             class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                                             width="175" height="120" role="img" onclick="display(this)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev w-auto ps-2 pe-2 bg-black bg-opacity-50 mt-2 mb-2"
+                                type="button" data-bs-target="#carousel-bottom" data-bs-slide="prev">
+                            <img src="~/Assets/left1.png" aria-hidden="true" />
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next w-auto ps-2 pe-2 bg-black bg-opacity-50  mt-2 mb-2"
+                                type="button" data-bs-target="#carousel-bottom" data-bs-slide="next">
+                            <img src="~/Assets/right-arrow2.png" aria-hidden="true" />
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- <img src="~/Assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png" id="image-area" class="w-100 h-100" /> -->
+
+            </div>
+            <div class="col-lg-5">
+                <header class="d-inline-block pt-lg-5 pt-md-0"
+                        style=" color: #414141; font-size: 38px; font-family: 'Noto Sans Light', sans-serif;">
+                    @Model.Title
+                </header>
+                <p class="py-2 d-inline-block" style="font-size: 17px; color: #414141; height: 70px;">
+                    @Model.Short_Description
+                </p>
+                @{
+                    if (Model.Mission_type == false)
+                    {
+                        <h1 class="py-2"><span>@Model.goal_objective_text</span></h1>
+                    }
+                    else
+                    {
+                        //<div class="roundedSection text-center position-absolute" id="missionDeadline">
+                        //    <p class="mb-2 px-2 text-black" style="font-size: 10px; ">
+                        //        From @Model.Start_Date.ToString().Substring(0,10) until @Model.End_Date.ToString().Substring(0,10)
+                        //    </p>
+                        //</div>
+                    }
+                }
+
+                <div class="container flex-wrap border-bottom py-0 d-flex justify-content-between">
+                    <div class="seats d-flex align-items-start">
+                        @{
+                            if (isUserApplied == true)
+                            {
+                                <img class="me-2" src="~/Assets/Already-volunteered.png" alt="" height="29px"
+                             width="29px">
+                                <p style="font-size: 16px; color: #757575">
+                                    <span style="font-size: 21px; color: #414141;">@Model.filled_seats</span><br> Already Volunteer
+                                </p>
+                            }
+                            else
+                            {
+                                <img class="me-2" src="~/Assets/Seats-left.png" alt="" height="29px"
+                             width="29px">
+                                <p style="font-size: 16px; color: #757575">
+                                    <span style="font-size: 21px; color: #414141;">@(@Model.Max_seats - @Model.filled_seats)</span><br> Seats left
+                                </p>
+                            }
+                        }
+
+                    </div>
+                    <div class="d-flex">
+                        <div class="d-flex flex-column ms-2 " style="min-width: 218px;">
+                            @{
+                                if (Model.Mission_type == false)
+                                {
+
+                                    <div class="row align-items-center mt-3">
+                                        <div class="col-2">
+                                            <img src="~/Assets/mission.png" alt="" width="30px" height="30px">
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="progress" role="progressbar" aria-valuenow=@Model.goal_value aria-valuemin="0"
+                                             aria-valuemax=@achievedValue style="height:12px;">
+                                                <div class="progress-bar" style="width: 60%; background: #F88634;"></div>
+                                            </div>
+                                            <span class="light-gray fs-fourteen">@Model.goal_value achieved</span>
+                                        </div>
+                                    </div>
+
+
+                                }
+                                else
+                                {
+                                    <div class="mt-1 me-2 p-0">
+                                        <img src="~/Assets/deadline.png" alt="" width="30px" height="30px">
+                                    </div>
+                                    <div class="px-0">
+                                        <h5 class="mb-0 mt-1">@Model.Start_Date.ToString().Substring(0,10)</h5>
+                                        <p class="mb-0">Deadline</p>
+                                    </div>
+
+                                }
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="container pt-3">
+                    <div class="row">
+                        <div class="col-lg-6 pt-2">
+
+                            @{
+                                if (Model.is_favorite)
+                                {
+                                    <button id="remove-fav-btn" class="mission-btn rounded-pill w-100" onclick="removeFromFavorites(@Model.MissionId)" data-mission-id="@Model.MissionId">
+                                        <i class="bi bi-heart-fill m-2 text-danger"
+                                       style="color:#757575;"></i>
+                                        Remove from Favourite
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button id="add-fav-btn" class="mission-btn rounded-pill w-100" onclick="addToFavorites(@Model.MissionId)">
+                                        <i class="bi bi-heart m-2"
+                                       style="color:#757575;"></i>
+                                        Add to Favourite
+                                    </button>
+                                }
+                            }
+
+                        </div>
+                        <div class="col-lg-6 pt-2">
+                            <button class="mission-btn rounded-pill w-100">
+                                <i class="bi bi-people m-1"></i>Recommend
+                                to a Co-Worker
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                @{
+                    if (isUserApplied)
+                    {
+                        <h1 class="py-2">
+                            <span class="rating border-0">
+                                @{
+                                    if (Model.Rating == null)
+                                    {
+                                        <input type="radio" name="rating" value="5" id="5" data-rating="5">
+
+                                        <label for="5">☆</label>
+                                        <input type="radio" name="rating" value="4" id="4" data-rating="4">
+
+                                        <label for="4">☆</label>
+                                        <input type="radio" name="rating" value="3" id="3" data-rating="3">
+
+                                        <label for="3">☆</label>
+                                        <input type="radio" name="rating" value="2" id="2" data-rating="2">
+
+                                        <label for="2">☆</label>
+                                        <input type="radio" name="rating" value="1" id="1" data-rating="1">
+
+                                        <label for="1">☆</label>
+                                    }
+                                    else
+                                    {
+                                        for (int i = 1; i <= 5; i++)
+                                        {
+                                            <input type="radio" name="rating" value="@i" id="@i" @(i == Model.Rating ? "checked" : "")>
+                                            <label for="@i">@((i <= Model.Rating) ? "☆" : "☆")</label>
+                                        }
+                                    }
+                                }
+
+                            </span>
+                        </h1>
+                    }
+                    else
+                    {
+                        <fieldset disabled>
+                            <h1 class="py-2">
+                                <span class="rating border-0">
+                                    <input type="radio" name="rating" value="5" id="5" disabled><label for="5">☆</label>
+                                    <input type="radio" name="rating" value="4" id="4" disabled><label for="4">☆</label>
+                                    <input type="radio" name="rating" value="3" id="3" disabled><label for="3">☆</label>
+                                    <input type="radio" name="rating" value="2" id="2" disabled><label for="2">☆</label>
+                                    <input type="radio" name="rating" value="1" id="1" disabled><label for="1">☆</label>
+                                </span>
+                            </h1>
+                        </fieldset>
+                    }
+
+                }
+
+                <div class="container-fluid">
+                    <div class="row g-3">
+                        <div class="col-xl-3 col-md-6 col-6">
+                            <div class="border px-3 my-2 h-100">
+
+                                <img src="~/Assets/pin1.png" alt="" class="my-3">
+                                <p style="color:#414141; font-size: 15px; ">
+                                    <span style="color:#757575; font-size: 13px; ">city</span><br>@Model.CityName
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-6">
+                            <div class="border px-3 my-2 h-100">
+
+                                <img src="~/Assets/web.png" alt="" class="my-3">
+                                <p style="color:#414141; font-size: 15px; ">
+                                    <span style="color:#757575; font-size: 13px; ">Theme</span><br>@Model.ThemeTitle
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-6">
+                            <div class="border px-3 my-2 h-100">
+
+                                <img src="~/Assets/calender.png" alt="" class="my-3">
+                                <p style="color:#414141; font-size: 15px; ">
+                                    <span style="color:#757575; font-size: 13px; ">Date</span><br>
+                                    @{
+                                        if (@Model.End_Date <= @DateTime.UtcNow)
+                                        {
+                                            <span>Ongoing Opportunity</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Closed</span>
+                                        }
+                                    }
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-6">
+                            <div class="border px-3 my-2 h-100">
+
+                                <img src="~/Assets/organization.png" alt="" class="my-3">
+                                <p style="color:#414141; font-size: 15px; ">
+                                    <span style="color:#757575; font-size: 13px; ">Organization</span><br>@Model.Organization_name
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-5" id="apply-btn">
+                    <button type="submit" value="Apply" class="btn btn-outline-orange rounded-pill pe-3 fw-bold"
+                            style="  border-color: #F88634;
+                                color: #F88634; height: 60px; width: 220px;">
+                        Apply now
+                        <img src="~/Assets/right-arrow.png" class="ms-2" />
+                    </button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container g-0 pt-5">
+    <div class="container" style="min-height: 770px;">
+        <div class="row">
+            <div class="col-lg-8 g-0">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <div class="container" style="margin-top: 10px;">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Mission</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Organization</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Comments</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                    <p style="font-size: 25px;color: #414141;">Introduction</p>
+                                    <p style="color: #414141; font-size: 15px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis ipsum perspiciatis laboriosam nemo accusantium eligendi quis perferendis, porro facilis ullam?</p>
+                                    <p style="color: #414141; font-size: 15px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero distinctio, ex mollitia, voluptas inventore adipisci animi porro ea odit alias eos? Tempora ad perferendis illum rerum blanditiis quidem illo voluptatibus?</p>
+                                    <p style="color: #414141; font-size: 15px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa laboriosam voluptates vitae animi quibusdam quis voluptas dolore error et doloremque inventore earum sunt totam deserunt, dicta cupiditate consectetur. Asperiores aut praesentium incidunt vel? Ut placeat dolore dicta doloribus tempora ad, quidem deleniti, eos corporis delectus libero nobis natus aperiam quo.</p>
+                                    <p style="font-size: 25px;color: #414141;">Challenge</p>
+                                    <p style="color: #414141; font-size: 15px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, dolorum neque! Necessitatibus libero officia ab! Repellat, dolorum in voluptatem assumenda laborum molestias itaque deleniti sapiente. Ad quis minus facere repudiandae quaerat quae aliquid nobis fugiat perspiciatis rerum labore enim odio, numquam incidunt hic optio alias aspernatur voluptatibus reprehenderit dignissimos eos?</p>
+                                    <p style="color: #414141; font-size: 15px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate fugit asperiores esse praesentium in alias debitis suscipit eveniet. Non quas quo repellendus vitae! Minus beatae sed alias maxime, velit iure totam similique. Ad, quae ipsum! Praesentium explicabo nam perspiciatis commodi!</p>
+                                    <p style="font-size: 25px;color: #414141;">Documents</p>
+                                    <div class="filebtn justify-content-between">
+                                        <button class="btn px-4" style="border: 1px solid #E8E8E8; border-radius: 23px;">
+                                            <img src="~/Assets/pdf.png" alt="">
+                                            <span>pdf</span>
+                                        </button>
+                                        <button class="btn px-4 " style="border: 1px solid #E8E8E8; border-radius: 23px;">
+                                            <img src="~/Assets/doc.png" alt="">
+                                            <span>at_vero_eos_accusamus.doc</span>
+                                        </button>
+                                        <button class="btn px-4" style="border: 1px solid #E8E8E8; border-radius: 23px;">
+                                            <img src="~/Assets/xlsx.png" alt="">
+                                            <span>important_doc.xls</span>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                                    <div>
+                                        <div class="divces d-flex m-4">
+                                            <img src="~/Assets/ces.png" alt="" style="">
+                                            <div class="divname ms-5 mt-3">
+                                                <p style="font-size: 25px;">@Model.Organization_name</p>
+                                                <div class="d-flex">
+                                                    <img src="~/Assets/Already-volunteered.png" alt="" height="20px" width="20px">
+                                                    <p class="ms-2">@Model.Organization_name</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p>@Model.Organization_detail</p>
+                                        <div class="divlocation d-flex">
+                                            <img src="~/Assets/pin1.png" alt="" height="20px" width="18px">
+                                            <p class="ms-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, animi?</p>
+                                        </div>
+                                        <div class="divcall d-flex">
+                                            <img src="~/Assets/search.png" alt="" height="20px" width="20px">
+                                            <p class="ms-3">+1 7788554422</p>
+                                        </div>
+                                        <div class="divmail d-flex">
+                                            <img src="~/Assets/bin.png" alt="" height="20px" width="20px">
+                                            <p class="ms-3">abc@gmail.com</p>
+                                        </div>
+                                        <div class="divworld d-flex">
+                                            <img src="~/Assets/web.png" alt="" height="20px" width="20px">
+                                            <p class="ms-3">www.abc.com</p>
+                                        </div>
+                                        <p style="font-size: 25px;color: #414141;">About Organization</p>
+                                        <p style="color: #414141; font-size: 15px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id placeat voluptatem commodi sunt laboriosam, veniam ut assumenda cumque vitae laudantium, quasi, fugit ullam corporis nihil?</p>
+                                        <p style="color: #414141; font-size: 15px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima nihil fugiat, laudantium, ipsam in eveniet necessitatibus molestiae soluta sapiente commodi, inventore possimus quos natus perferendis adipisci veritatis ea earum? Ex tenetur quod iusto sequi veritatis, veniam, repellendus illo quas eius deserunt perspiciatis. Voluptatem necessitatibus quo modi voluptatum nostrum enim corrupti!</p>
+
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+
+
+                                    <div class="tab-pane fade ms-2 pb-2 active show" style="background-color: rgb(243, 243, 243);" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                                        <form method="post" action="Home/Comments" class="form-group ps-2 pt-2 pe-2" id="comment-form">
+
+                                            <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter your comments..."></textarea>
+                                            <button type="submit" @(disableButton ? "disabled" : "") class="btn btn-outline-warning ms-2 mt-2" id="postCommentBtn">Post Comment</button>
+                                        </form>
+
+                                        @*<partial name="_Comments" model="Model" />*@
+                                        @Html.Partial("_Comments", Model.Comments)
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- Tab panes -->
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4 g-0">
+                <div class="rating border">
+                    <div class="row" style="max-width: 461px;
+                            height: 245px;">
+                        <div class="container-fluid" style="margin-top: 10px;">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active text-decoration-none border-0"
+                                       style="border-bottom: 1px solid #414141!important; font-size: 22px;"
+                                       data-bs-toggle="tab" href="#msg">Information</a>
+                                </li>
+                            </ul>
+                            <div class="table-responsive">
+                                <table class="table align-middle">
+                                    <thead>
+                                        <tr>
+                                            <td class="py-3">Skills</td>
+                                            <td class="py-3">
+                                                @if (Model.skill_name != null && Model.skill_name.Any())
+                                                {
+                                                    @Model.skill_name.First()
+                                                    ;
+                                                    @foreach (var s in Model.skill_name.Skip(1))
+                                                    {
+                                                        <span>, @s</span>
+                                                    }
+                                                }
+                                            </td>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="py-3">Days</td>
+
+                                            @{
+                                                if (Model.Availability)
+                                                {
+                                                    <td class="py-3">
+                                                        Daily
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="py-3"> Weekend only</td>
+                                                }
+                                            }
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 border-bottom-0">Rating</td>
+                                            <td class="py-3 border-bottom-0">
+
+                                                <div class="ratings">
+                                                    @for (int i = 1; i < Model.Rating.GetValueOrDefault(); i++)
+                                                    {
+                                                        <img src="~/Assets/selected-star.png" alt="Selected star">
+                                                    }
+                                                    @for (int i = Model.Rating.GetValueOrDefault() + 1; i < 5; i++)
+                                                    {
+                                                        <img src="~/Assets/star.png" alt="star">
+                                                    }
+                                                    <span class="px-2">(by @Model.UserCount )</span>
+                                                </div>
+
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- volunteer -->
+                <div class="volunteer border mt-5">
+                    <div class="" style="max-width: 461px;
+                            height: 514px;">
+                        <div class="container-fluid" style="margin-top: 10px;">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active text-decoration-none border-0"
+                                       style="border-bottom: 1px solid #414141!important; font-size: 22px;"
+                                       data-bs-toggle="tab" href="#msg">Recent Volunteers</a>
+                                </li>
+                            </ul>
+
+
+
+
+
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane align-middle container active " id="previous">
+                                    <div class="card-body row justify-content-center">
+
+
+                                        <div class="d-flex col-3 flex-column m-1 justify-content-center">
+                                            <img src="~/Assets/volunteer1.png" alt=""
+                                                 class="rounded-circle">
+                                            <div class="text-center">jhjgkj kjfgh</div>
+                                        </div>
+
+                                        <div class="d-flex col-3 flex-column m-1 justify-content-center">
+                                            <img src="~/Assets/volunteer1.png" alt=""
+                                                 class="rounded-circle">
+                                            <div class="text-center">jhjgkj kjfgh</div>
+                                        </div>
+
+                                        <div class="d-flex col-3 flex-column m-1 justify-content-center">
+                                            <img src="~/Assets/volunteer1.png" alt=""
+                                                 class="rounded-circle">
+                                            <div class="text-center">jhjgkj kjfgh</div>
+                                        </div>
+
+                                        <div class="d-flex col-3 flex-column m-1 justify-content-center">
+                                            <img src="~/Assets/volunteer1.png" alt=""
+                                                 class="rounded-circle">
+                                            <div class="text-center">jhjgkj kjfgh</div>
+                                        </div>
+
+                                        <div class="d-flex col-3 flex-column m-1 justify-content-center">
+                                            <img src="~/Assets/volunteer1.png" alt=""
+                                                 class="rounded-circle">
+                                            <div class="text-center">jhjgkj kjfgh</div>
+                                        </div>
+
+                                        <div class="d-flex col-3 flex-column m-1 justify-content-center">
+                                            <img src="~/Assets/volunteer2.png" alt=""
+                                                 class="rounded-circle">
+                                            <div class="text-center">jhjgkj kjfgh</div>
+                                        </div>
+
+
+                                        <div class="d-flex col-3 flex-column m-1 justify-content-center">
+                                            <img src="~/Assets/volunteer3.png" alt=""
+                                                 class="rounded-circle">
+                                            <div class="text-center">jhjgkj kjfgh</div>
+                                        </div>
+
+                                        <div class="d-flex col-3 flex-column m-1 justify-content-center">
+                                            <img src="~/Assets/volunteer4.png" alt=""
+                                                 class="rounded-circle">
+                                            <div class="text-center">jhjgkj kjfgh</div>
+                                        </div>
+
+                                        <div class="d-flex col-3 flex-column m-1 justify-content-center">
+                                            <img src="~/Assets/volunteer5.png" alt=""
+                                                 class="rounded-circle">
+                                            <div class="text-center">jhjgkj kjfgh</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                            </div>
+
+                        </div>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item border">
+                                <a class="nav-link active border-0 " data-bs-toggle="tab" href="#previous">
+                                    <<
+                                </a>
+                            </li>
+                            <li class="border flex-fill d-flex justify-content-center align-items-center">
+                                <div>hd</div>
+                            </li>
+                            <li class="nav-item border">
+                                <a class="nav-link border-0" data-bs-toggle="tab" href="#next">>></a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+
+
+<div class="container-fluid g-0 border" style="min-height: 793px; margin-top: 137px;">
+    <div class="container">
+        <header style="font-size: 34px; text-align: center;" class="mt-5 mb-3">Related Missions</header>
+        <div class="row">
+
+            <div class=" main col-lg-4 col-md-6">
+                <div class="card ard">
+                    <div class="card">
+                        <img src="~/Assets/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
+                             class="card-img-top" alt="..." style="width: 100%;height: 100%;">
+                        <div class="card-img-overlay d-flex justify-content-end">
+                            <div class="d-flex flex-column justify-content-between">
+                                <div class="rounded-pill text-white bg-black bg-opacity-50 pe-2 fs-fourteen">
+                                    <img src="~/Assets/pin.png" class="p-2" />Melbourne
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <button style="
+                                            border: none;
+                                            cursor: pointer;
+                                            appearance: none;
+                                            background-color: inherit;
+
+                                          ">
+                                        <img src="~/Assets/heart.png"
+                                             class="bg-black bg-opacity-50 rounded-circle p-2" />
+                                    </button>
+                                    <button style="
+                                        border: none;
+                                        cursor: pointer;
+                                        appearance: none;
+                                        background-color: inherit;
+
+                                      ">
+                                        <img src="~/Assets/user.png"
+                                             class="bg-black bg-opacity-50 rounded-circle p-2" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body pt-0">
+                        <div class="starup">
+                            <div>
+                                <span class="fs-4 fw-bold dark-gray">
+                                    Grow Trees - On the Path to environment
+                                    sustainability.
+                                </span>
+                                <p class="light-gray" style="font-size:15px">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing
+                                    elit, sed do eiusmod temp bvhjgfjhb or incididunt ut labore...
+                                </p>
+                            </div>
+
+                            <div class="d-flex  flex-wrap justify-content-around div1">
+                                <div class="d-flex justify-content-between align-items-center div11"
+                                     style="width: 100%;">
+                                    <span class="dark-gray">Australian Paradise</span>
+                                    <div class="d-flex">
+                                        <img src="~/Assets/selected-star.png" />
+                                        <img src="~/Assets/selected-star.png" />
+                                        <img src="~/Assets/selected-star.png" />
+                                        <img src="~/Assets/star.png" />
+                                        <img src="~/Assets/star.png" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-center none">
+                                        <span class="rounded-pill border p-2 z-1 bg-white">
+                                            From 10/01/2019 until
+                                            25/02/2019
+                                        </span>
+                                    </div>
+                                    <hr style="margin-top:-20px" />
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="div2 d-flex  flex-wrap justify-content-space-around ">
+
+
+                            <div class="d-flex  flex-wrap justify-content-between mt-5">
+                                <div class="d-flex align-items-bottom ">
+                                    <img src="~/Assets/Already-volunteered.png" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <span class="dark-gray">@Model.filled_seats</span>
+                                        <span class="light-gray fs-fourteen">Already volunteered</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    <img src="~/Assets/Seats-left.png" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <span class="dark-gray">10</span>
+                                        <span class="light-gray fs-fourteen">@Model.Max_seats- @Model.filled_seats</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    <img src="~/Assets/deadline.png" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <span class="dark-gray">09/01/2019</span>
+                                        <span class="light-gray fs-fourteen">Deadline</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <img src="~/Assets/mission.png" style="height:24px; width:24px" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <div class="progress color-orange" role="progressbar" aria-valuenow="75"
+                                             aria-valuemin="0" aria-valuemax="100" style="height:8px">
+                                            <div class="progress-bar bg-orange-color"
+                                                 style="width: 75%; color: orange;"></div>
+                                        </div>
+                                        <span class="light-gray fs-fourteen mt-2">8000 achieved</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-center mt-5" id="apply-btn">
+                                <button type="submit" value="Apply"
+                                        class="btn btn-outline-orange rounded-pill ps-3 pe-3 fw-bold" style="  border-color: #ff9800;
+                                        color: orange;">
+                                    Apply
+                                    <img src="~/Assets/right-arrow.png" class="ms-2" />
+                                </button>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class=" main col-lg-4 col-md-6">
+                <div class="card ard">
+                    <div class="card">
+                        <img src="~/Assets/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
+                             class="card-img-top" alt="..." style="width: 100%;height: 100%;">
+                        <div class="card-img-overlay d-flex justify-content-end">
+                            <div class="d-flex flex-column justify-content-between">
+                                <div class="rounded-pill text-white bg-black bg-opacity-50 pe-2 fs-fourteen">
+                                    <img src="~/Assets/pin.png" class="p-2" />Melbourne
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <button style="
+                                            border: none;
+                                            cursor: pointer;
+                                            appearance: none;
+                                            background-color: inherit;
+
+                                          ">
+                                        <img src="~/Assets/heart.png"
+                                             class="bg-black bg-opacity-50 rounded-circle p-2" />
+                                    </button>
+                                    <button style="
+                                        border: none;
+                                        cursor: pointer;
+                                        appearance: none;
+                                        background-color: inherit;
+
+                                      ">
+                                        <img src="~/Assets/user.png"
+                                             class="bg-black bg-opacity-50 rounded-circle p-2" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body pt-0">
+                        <div class="starup">
+                            <div>
+                                <span class="fs-4 fw-bold dark-gray">
+                                    Grow Trees - On the Path to environment
+                                    sustainability.
+                                </span>
+                                <p class="light-gray" style="font-size:15px">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing
+                                    elit, sed do eiusmod temp bvhjgfjhb or incididunt ut labore...
+                                </p>
+                            </div>
+
+                            <div class="d-flex  flex-wrap justify-content-around div1">
+                                <div class="d-flex justify-content-between align-items-center div11"
+                                     style="width: 100%;">
+                                    <span class="dark-gray">Australian Paradise</span>
+                                    <div class="d-flex">
+                                        <img src="~/Assets/selected-star.png" />
+                                        <img src="~/Assets/selected-star.png" />
+                                        <img src="~/Assets/selected-star.png" />
+                                        <img src="~/Assets/star.png" />
+                                        <img src="~/Assets/star.png" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-center none">
+                                        <span class="rounded-pill border p-2 z-1 bg-white">
+                                            From 10/01/2019 until
+                                            25/02/2019
+                                        </span>
+                                    </div>
+                                    <hr style="margin-top:-20px" />
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="div2 d-flex  flex-wrap justify-content-space-around ">
+
+
+                            <div class="d-flex  flex-wrap justify-content-between mt-5">
+                                <div class="d-flex align-items-bottom ">
+                                    <img src="~/Assets/Already-volunteered.png" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <span class="dark-gray">250</span>
+                                        <span class="light-gray fs-fourteen">Already volunteered</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    <img src="~/Assets/Seats-left.png" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <span class="dark-gray">10</span>
+                                        <span class="light-gray fs-fourteen">Seats Left</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    <img src="~/Assets/deadline.png" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <span class="dark-gray">09/01/2019</span>
+                                        <span class="light-gray fs-fourteen">Deadline</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <img src="~/Assets/mission.png" style="height:24px; width:24px" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <div class="progress color-orange" role="progressbar" aria-valuenow="75"
+                                             aria-valuemin="0" aria-valuemax="100" style="height:8px">
+                                            <div class="progress-bar bg-orange-color"
+                                                 style="width: 75%; color: orange;"></div>
+                                        </div>
+                                        <span class="light-gray fs-fourteen mt-2">8000 achieved</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-center mt-5" id="apply-btn">
+                                <button type="submit" value="Apply"
+                                        class="btn btn-outline-orange rounded-pill ps-3 pe-3 fw-bold" style="  border-color: #ff9800;
+                                        color: orange;">
+                                    Apply
+                                    <img src="~/Assets/right-arrow.png" class="ms-2" />
+                                </button>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class=" main col-lg-4 pt-0 pb-4 col-md-6">
+                <div class="card ard ">
+                    <div class="card">
+                        <img src="~/Assets/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
+                             class="card-img-top" alt="..." style="width: 100%;height: 100%;">
+                        <div class="card-img-overlay d-flex justify-content-end">
+                            <div class="d-flex flex-column justify-content-between">
+                                <div class="rounded-pill text-white bg-black bg-opacity-50 pe-2 fs-fourteen">
+                                    <img src="~/Assets/pin.png" class="p-2" />Melbourne
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <button style="
+                                            border: none;
+                                            cursor: pointer;
+                                            appearance: none;
+                                            background-color: inherit;
+
+                                          ">
+                                        <img src="~/Assets/heart.png"
+                                             class="bg-black bg-opacity-50 rounded-circle p-2" />
+                                    </button>
+                                    <button style="
+                                        border: none;
+                                        cursor: pointer;
+                                        appearance: none;
+                                        background-color: inherit;
+
+                                      ">
+                                        <img src="~/Assets/user.png"
+                                             class="bg-black bg-opacity-50 rounded-circle p-2" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body pt-0">
+                        <div class="starup">
+                            <div>
+                                <span class="fs-4 fw-bold dark-gray">
+                                    Grow Trees - On the Path to environment
+                                    sustainability.
+                                </span>
+                                <p class="light-gray" style="font-size:15px">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing
+                                    elit, sed do eiusmod temp bvhjgfjhb or incididunt ut labore...
+                                </p>
+                            </div>
+
+                            <div class="d-flex  flex-wrap justify-content-around div1">
+                                <div class="d-flex justify-content-between align-items-center div11"
+                                     style="width: 100%;">
+                                    <span class="dark-gray">Australian Paradise</span>
+                                    <div class="d-flex">
+                                        <img src="~/Assets/selected-star.png" />
+                                        <img src="~/Assets/selected-star.png" />
+                                        <img src="~/Assets/selected-star.png" />
+                                        <img src="~/Assets/star.png" />
+                                        <img src="~/Assets/star.png" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-center none">
+                                        <span class="rounded-pill border p-2 z-1 bg-white">
+                                            From 10/01/2019 until
+                                            25/02/2019
+                                        </span>
+                                    </div>
+                                    <hr style="margin-top:-20px" />
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="div2 d-flex  flex-wrap justify-content-space-around ">
+
+
+                            <div class="d-flex  flex-wrap justify-content-between mt-5">
+                                <div class="d-flex align-items-bottom ">
+                                    <img src="~/Assets/Already-volunteered.png" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <span class="dark-gray">250</span>
+                                        <span class="light-gray fs-fourteen">Already volunteered</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    <img src="~/Assets/Seats-left.png" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <span class="dark-gray">10</span>
+                                        <span class="light-gray fs-fourteen">Seats Left</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    <img src="~/Assets/deadline.png" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <span class="dark-gray">09/01/2019</span>
+                                        <span class="light-gray fs-fourteen">Deadline</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <img src="~/Assets/mission.png" style="height:24px; width:24px" />
+                                    <div class="d-flex flex-column ms-2 ">
+                                        <div class="progress color-orange" role="progressbar" aria-valuenow="75"
+                                             aria-valuemin="0" aria-valuemax="100" style="height:8px">
+                                            <div class="progress-bar bg-orange-color"
+                                                 style="width: 75%; color: orange;"></div>
+                                        </div>
+                                        <span class="light-gray fs-fourteen mt-2">8000 achieved</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-center mt-5" id="apply-btn">
+                                <button type="submit" value="Apply"
+                                        class="btn btn-outline-orange rounded-pill ps-3 pe-3 fw-bold" style="  border-color: #ff9800;
+                                        color: orange;">
+                                    Apply
+                                    <img src="~/Assets/right-arrow.png" class="ms-2" />
+                                </button>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/removefromfavorites.js"></script>
+<script src="~/js/addtofavorites.js"></script>
+
+<script>
+    $('input[type="radio"][name="rating"]').click(function () {
+       
+        var rating = $(this).data('rating');
+        var missionId = '@Model.MissionId';
+        $.ajax({
+            url: '/Home/RateMission',
+            type: 'POST',
+            data: { missionId: missionId, rating: rating },
+            success: function (result) {
+                if (result.success) {
+                    // Update the UI to reflect the new rating
+                    $('input[type="radio"][name="rating"]').prop('checked', false);
+                    $('input[type="radio"][name="rating"][data-rating="' + rating + '"]').prop('checked', true);
+                } else {
+                    console.log(result.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
+    });
+
+</script>

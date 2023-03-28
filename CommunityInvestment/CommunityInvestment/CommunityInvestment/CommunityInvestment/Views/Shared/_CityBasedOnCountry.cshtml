@@ -1,0 +1,19 @@
+﻿
+
+@foreach (var city in Model.City)
+{
+    var checkBoxId = city.Value;
+    var liId = "li" + city.Text;
+        <li id="@liId">
+            <div class="form-check dropdown-item px-4">
+                <input class="form-check-input mx-auto"
+               type="checkbox"
+               value=""
+               id="@checkBoxId" />
+                <label class="form-check-label ps-2" for="@city.Text">
+                @city.Text
+                </label>
+            </div>
+        </li>
+}
+

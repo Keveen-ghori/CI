@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CommunityInvestment.Data\**" />
+    <Compile Remove="CommunityInvestment.Models\**" />
+    <Content Remove="CommunityInvestment.Data\**" />
+    <Content Remove="CommunityInvestment.Models\**" />
+    <EmbeddedResource Remove="CommunityInvestment.Data\**" />
+    <EmbeddedResource Remove="CommunityInvestment.Models\**" />
+    <None Remove="CommunityInvestment.Data\**" />
+    <None Remove="CommunityInvestment.Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="linq2db" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNet.Authentication.Cookies" Version="1.0.0-rc1-final" />
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.32" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.1.23111.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0-preview.1.23111.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+    <PackageReference Include="MimeKit" Version="3.5.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.27.0" />
+    <PackageReference Include="Uno.UI" Version="4.7.44" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommunityInvestment.Data\CommunityInvestment.Data.csproj" />
+  </ItemGroup>
+
+</Project>

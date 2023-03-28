@@ -1,0 +1,157 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+@inject IHttpContextAccessor HttpContextAccessor
+<!-- Header -->
+    <div class="container-fluid border-bottom g-0 header">
+        <nav class="navbar-expand-md navbar navbar-expand-lg g-0 bg-body-tertiary container-fluid">
+            <div class="container g-0 d-flex justify-content-between" style="min-height: 72px;">
+                <div class="dummy">
+                    <button class="navbar-toggler border-0" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="bi bi-list navbar-toggler-icon"></i>
+                    </button>
+                    <a class="navbar-brand mx-lg-0" asp-controller="" asp-action="Index">
+                        <img alt="logo" src="~/Assets/logo.png" />
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-5">
+                        <li class="nav-item dropdown px-3">
+                            <a class="nav-link" aria-current="page" asp-controller="" asp-action="Index" id="navbarDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Explore <img class="mx-1"
+                                             src="~/Assets/drop-down.png" alt="dropdown">
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="" asp-action="Index">Action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="" asp-action="Index">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="" asp-action="Index">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link" asp-controller="" asp-action="Index">Stories</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link " asp-controller="" asp-action="Index">News</a>
+                        </li>
+                        <li class="nav-item dropdown px-3">
+                            <a class="nav-link" asp-controller="" asp-action="Index" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Policy <img class="mx-1" src="~/Assets/drop-down.png" alt="dropdown">
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="" asp-action="Index">Action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="" asp-action="Index">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="" asp-action="Index">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-5">
+                            <li class="nav-item dropdown px-3">
+                                <a asp-controller="Home" asp-action="Index" id="navbarDropdown" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false" class="notification"
+                                   data-toggle="modal" data-target="#form">
+                                    <img src="~/Assets/bell.png" alt="">
+                                    <span class="badge">6</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"
+                                    style="width: 400px;">
+                                    <div class="container d-flex justify-content-start align-items-center">
+                                        <a asp-controller="" asp-action="Index" class="text-black">
+                                            <i class="fa fa-gear"
+                                               style="font-size:24px;"></i>
+                                        </a>
+                                        <h3 class="px-5">Notification</h3>
+                                        <a asp-controller="" asp-action="Index" class="text-black text-decoration-none dropdown-item">Clear All</a>
+                                    </div>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <div class="container">
+                                        <div class="notify d-flex py-2">
+                                            <img src="~/Assets/user1.png" alt="" class="px-1">
+                                            <p class="px-2">John Doe: Recommend Mission - Grow Trees</p>
+                                        </div>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <div class="notify d-flex py-2">
+                                        <img src="~/Assets/user1.png" alt="" class="px-1">
+                                        <p class="px-2">John Doe: Recommend Mission - Grow Trees</p>
+                                    </div>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <div class="notify d-flex py-2">
+                                        <img src="~/Assets/user1.png" alt="" class="px-1">
+                                        <p class="px-2">John Doe: Recommend Mission - Grow Trees</p>
+                                    </div>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <div class="notify d-flex py-2">
+                                        <img src="~/Assets/user1.png" alt="" class="px-1">
+                                        <p class="px-2">John Doe: Recommend Mission - Grow Trees</p>
+                                    </div>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <div class="notify d-flex py-2">
+                                        <img src="~/Assets/user1.png" alt="" class="px-1">
+                                        <p class="px-2">John Doe: Recommend Mission - Grow Trees</p>
+                                    </div>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <div class="notify d-flex py-2">
+                                        <img src="~/Assets/user1.png" alt="" class="px-1">
+                                        <p class="px-2">John Doe: Recommend Mission - Grow Trees</p>
+                                    </div>
+                    </div>
+                    </ul>
+
+                    </ul>
+                    <ul class="navbar-nav me-auto mb- mb-lg-0 mx-5">
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link d-flex align-items-center" aria-current="page" asp-controller="" asp-action="Index"
+                               id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <img class=""
+                                     style="border-radius: 50%; width:30px;" src="~/Assets/user-img.png"
+                                     alt="dropdown">
+                            <span class="px-2">@HttpContextAccessor.HttpContext.Session.GetString("Username") </span>
+                                <img src="~/Assets/drop-down.png" alt="" class="">
+                            </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="" asp-action="Index">Action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="" asp-action="Index">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-controller="Users" asp-action="Logout">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+    </div>
+    </nav>
+    </div>

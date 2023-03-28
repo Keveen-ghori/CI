@@ -1,0 +1,613 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: "Noto Sans Light", sans-serif;
+    color: #414141;
+}
+
+.notification {
+    position: relative;
+    display: inline-block;
+}
+
+    .notification .badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        padding: 3px 5px;
+        border-radius: 50%;
+        background: #f88634;
+        color: white;
+    }
+
+h1 span {
+    border: 1px solid #e8e8e8;
+    border-radius: 21px;
+    font-size: 17.58px;
+    padding: 10px;
+    color: #414141;
+}
+
+h1 {
+    display: flex;
+}
+
+    h1:before,
+    h1:after {
+        content: "";
+        flex: 1 1;
+        border-bottom: 1px solid #e8e8e8;
+        margin: auto;
+    }
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+    .rating > input {
+        display: none
+    }
+
+    .rating > label {
+        position: relative;
+        width: 1em;
+        font-size: 30px;
+        font-weight: 300;
+        color: #414141;
+        cursor: pointer
+    }
+
+        .rating > label::before {
+            content: "\2605";
+            position: absolute;
+            opacity: 0;
+            color: #FFD600;
+        }
+
+        .rating > label:hover:before,
+        .rating > label:hover ~ label:before {
+            opacity: 1 !important
+        }
+
+    .rating > input:checked ~ label:before {
+        opacity: 1
+    }
+
+    .rating:hover > input:checked ~ label:before {
+        opacity: 0.4
+    }
+
+fieldset:disabled .rating > label {
+    pointer-events: none;
+}
+.mission-btn, .mission-btn-1 {
+    height: 50px;
+    background: #FFFFFF;
+    border: 2px solid #757575;
+    border-radius: 25px;
+    color: #757575;
+    /*font-size: 17px;*/
+}
+
+.last-con {
+    border: 1px solid #E8E8E8;
+    border-radius: 3px;
+}
+
+    .last-con img {
+        width: 18px;
+        height: 24px;
+    }
+
+input[type='file'] {
+    opacity: 0;
+}
+
+.image {
+    object-fit: scale-down;
+}
+
+@media only screen and (max-width: 600px) {
+    .ms-3 {
+        margin-left: 0 !important;
+    }
+}
+
+
+.background-img {
+    background-image: url("~/Assets/Grow-Trees-On-the-path-to-environment-sustainability.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("~/Assets/Grow-Trees-On-the-path-to-environment-sustainability.png");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.scrollable-menu {
+    height: auto;
+    width: auto;
+    max-width: 200px;
+    max-height: 200px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.Scroll {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+
+.navbar {
+    padding: 0;
+}
+
+.dropdown-menu li {
+    position: relative;
+}
+
+.dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -7px;
+}
+
+.dropdown-menu .dropdown-submenu-left {
+    right: 100%;
+    left: auto;
+}
+
+.dropdown-menu > li:hover > .dropdown-submenu {
+    display: block;
+}
+
+
+.col-md-4 {
+    padding-left: 0px !important;
+}
+
+.headerbar {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+/* @media screen and (min-width:0px) and (max-width:992px) {
+
+
+    .name span {
+        display: none;
+    }
+} */
+
+.btn-outline-warning {
+    --bs-btn-hover-color: #000 !important;
+    --bs-btn-hover-bg: #ffc107 !important;
+    --bs-btn-hover-border-color: #ffc107 !important;
+}
+
+.imgTitle {
+    bottom: 14px;
+    background-color: white;
+}
+
+.ptext p {
+    color: #757575;
+}
+
+
+@media screen and (min-width:768px) and (max-width:910px) {
+
+
+    .cardstar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ptext p {
+        font-size: 10px
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1090px) {
+    .cardstar .card-text {
+        font-size: 13px;
+        padding-top: 2%;
+    }
+
+    .c1-location {
+        bottom: 0.25rem !important;
+        height: 2rem;
+    }
+
+    .c1-heart {
+        bottom: 2.5rem !important;
+    }
+
+    .c1-person {
+        bottom: 0.25rem !important;
+    }
+}
+
+
+@media screen and (min-width:781px) and (max-width:1478px) {
+    #missionDeadline {
+        top: -14px !important;
+    }
+}
+
+
+
+.c1-location {
+    right: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 1.125rem;
+    top: 1rem;
+    color: white;
+}
+
+.c1-heart {
+    border-radius: 2rem;
+    background-color: rgb(0, 0, 0, 0.4);
+    bottom: 3.5rem;
+    right: 1rem;
+}
+
+.c1-person {
+    border-radius: 2rem;
+    background-color: rgb(0, 0, 0, 0.4);
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.card-img-top {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.card {
+    margin-bottom: 1rem;
+}
+
+.list-view .row > [class*=col-] {
+    max-width: 100%;
+    flex: 0 0 100%;
+}
+
+.list-view .card {
+    flex-direction: row;
+}
+
+@media (max-width: 575.98px) {
+    .list-view .card {
+        flex-direction: column;
+    }
+}
+
+.list-view .card > .card-img-top {
+    width: auto;
+}
+
+.list-view .card .card-body {
+    display: inline-block;
+}
+
+@media (max-width: 1022px) {
+
+    .lgrid .btn-grid,
+    .lgrid .btn-list {
+        display: none;
+    }
+}
+
+.posrelative {
+    position: relative;
+}
+
+#missionTheme {
+    border: 1px solid white;
+    border-radius: 20px;
+    bottom: -15px;
+    background-color: white;
+    font-size: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#missionDeadline {
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: white;
+    top: -10px;
+    left: 50%;
+    font-size: 13px;
+    transform: translateX(-50%);
+    color: #7a7a7a;
+}
+
+    #missionDeadline p {
+        min-width: fit-content;
+    }
+
+@media (max-width: 575.98px) {
+    .list-view .imgsize img {
+        width: 50%
+    }
+}
+
+@media (max-width: 768px) {
+    .hide {
+        display: none;
+    }
+}
+
+.dropdown-menu li {
+    position: relative;
+}
+
+.dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -7px;
+}
+
+.dropdown-menu .dropdown-submenu-left {
+    right: 100%;
+    left: auto;
+}
+
+.dropdown-menu > li:hover > .dropdown-submenu {
+    display: block;
+}
+
+
+.col-md-4 {
+    padding-left: 0px !important;
+}
+
+.headerbar {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+/* @media screen and (min-width:0px) and (max-width:992px) {
+
+
+    .name span {
+        display: none;
+    }
+} */
+
+.btn-outline-warning {
+    --bs-btn-hover-color: #000 !important;
+    --bs-btn-hover-bg: #ffc107 !important;
+    --bs-btn-hover-border-color: #ffc107 !important;
+}
+
+.imgTitle {
+    bottom: 14px;
+    background-color: white;
+}
+
+.ptext p {
+    color: #757575;
+}
+
+
+@media screen and (min-width:768px) and (max-width:910px) {
+
+
+    .cardstar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ptext p {
+        font-size: 10px
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1090px) {
+    .cardstar .card-text {
+        font-size: 13px;
+        padding-top: 2%;
+    }
+
+    .c1-location {
+        bottom: 0.25rem !important;
+        height: 2rem;
+    }
+
+    .c1-heart {
+        bottom: 2.5rem !important;
+    }
+
+    .c1-person {
+        bottom: 0.25rem !important;
+    }
+}
+
+
+@media screen and (min-width:781px) and (max-width:1478px) {
+    #missionDeadline {
+        top: -14px !important;
+    }
+}
+
+
+
+.c1-location {
+    right: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 1.125rem;
+    top: 1rem;
+    color: white;
+}
+
+.c1-heart {
+    border-radius: 2rem;
+    background-color: rgb(0, 0, 0, 0.4);
+    bottom: 3.5rem;
+    right: 1rem;
+}
+
+.c1-person {
+    border-radius: 2rem;
+    background-color: rgb(0, 0, 0, 0.4);
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.card-img-top {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.card {
+    margin-bottom: 1rem;
+}
+
+.list-view .row > [class*=col-] {
+    max-width: 100%;
+    flex: 0 0 100%;
+}
+
+.list-view .card {
+    flex-direction: row;
+}
+
+@media (max-width: 575.98px) {
+    .list-view .card {
+        flex-direction: column;
+    }
+}
+
+.list-view .card > .card-img-top {
+    width: auto;
+}
+
+.list-view .card .card-body {
+    display: inline-block;
+}
+
+@media (max-width: 1022px) {
+
+    .lgrid .btn-grid,
+    .lgrid .btn-list {
+        display: none;
+    }
+}
+
+.posrelative {
+    position: relative;
+}
+
+#missionTheme {
+    border: 1px solid white;
+    border-radius: 20px;
+    bottom: -15px;
+    background-color: white;
+    font-size: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#missionDeadline {
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: white;
+    top: -10px;
+    left: 50%;
+    font-size: 13px;
+    transform: translateX(-50%);
+    color: #7a7a7a;
+}
+
+    #missionDeadline p {
+        min-width: fit-content;
+    }
+
+@media (max-width: 575.98px) {
+    .list-view .imgsize img {
+        width: 40%
+    }
+}
+
+@media (max-width: 768px) {
+    .hide {
+        display: none;
+    }
+}
+
+.filter-list {
+    background-color: white;
+    border: 1px solid #808080;
+    border-radius: 20px;
+    color: #000;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 2%;
+}
+
+.filter-close-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 5px;
+    color: #888;
+}
+
+.scroll {
+    height: 200px;
+    overflow-y: auto;
+}
+
+.listPage {
+    padding: 10px;
+    text-align: center;
+    list-style: none;
+}
+
+    .listPage li {
+        background-color: #ffffffBD;
+        padding: 20px;
+        display: inline-block;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+    .listPage .active {
+        background-color: #B192EF;
+        color: #fff;
+    }

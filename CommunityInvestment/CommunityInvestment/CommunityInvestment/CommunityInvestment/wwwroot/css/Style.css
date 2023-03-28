@@ -1,0 +1,177 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.container-fluid {
+    max-height: 983px;
+}
+
+.background {
+    object-fit: contain;
+}
+
+form label {
+    font-size: 16px;
+    font-family: 'Noto Sans Light', sans-serif;
+    color: #414141;
+    margin-bottom: 8px;
+    margin-top: 23px;
+}
+
+form input {
+    border: 1px solid #2B64B1;
+    max-width: 401px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px #2B64B11F;
+    border-radius: 3px;
+    height: 56px;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    max-width: 189px;
+    height: 21px;
+    color: #414141;
+}
+
+.login-btn {
+    max-width: 401px;
+    height: 48px;
+    background: #F8863400;
+    border: 2px solid #F88634;
+    border-radius: 24px;
+    color: #F88634;
+    margin-top: 30px;
+}
+
+.form {
+    margin-left: 48px;
+    margin-right: 48px;
+}
+
+h1 span {
+    border: 1px solid #e8e8e8;
+    border-radius: 21px;
+    font-size: 17.58px;
+    padding: 10px;
+    color: #414141;
+}
+
+h1 {
+    display: flex;
+}
+
+    h1:before,
+    h1:after {
+        content: "";
+        flex: 1 1;
+        border-bottom: 1px solid #e8e8e8;
+        margin: auto;
+    }
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+    .rating > input {
+        display: none
+    }
+
+    .rating > label {
+        position: relative;
+        width: 1em;
+        font-size: 30px;
+        font-weight: 300;
+        color: #414141;
+        cursor: pointer
+    }
+
+        .rating > label::before {
+            content: "\2605";
+            position: absolute;
+            opacity: 0;
+            color: #FFD600;
+        }
+
+        .rating > label:hover:before,
+        .rating > label:hover ~ label:before {
+            opacity: 1 !important
+        }
+
+    .rating > input:checked ~ label:before {
+        opacity: 1
+    }
+
+    .rating:hover > input:checked ~ label:before {
+        opacity: 0.4
+    }
+
+.mission-btn, .mission-btn-1 {
+    height: 50px;
+    background: #FFFFFF;
+    border: 2px solid #757575;
+    border-radius: 25px;
+    color: #757575;
+    font-size: 17px;
+}
+
+.last-con {
+    border: 1px solid #E8E8E8;
+    border-radius: 3px;
+}
+
+    .last-con img {
+        width: 18px;
+        height: 24px;
+    }
+
+input[type='file'] {
+    opacity: 0;
+}
+
+.image {
+    object-fit: scale-down;
+}
+
+@media only screen and (max-width: 600px) {
+    .ms-3 {
+        margin-left: 0 !important;
+    }
+}
+
+
+.background-img {
+    background-image: url("~/Assets/Grow-Trees-On-the-path-to-environment-sustainability.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("~/Assets/Grow-Trees-On-the-path-to-environment-sustainability.png");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media only screen and (max-width: 1134px) {
+    .form {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .policy {
+        max-height: 0px;
+        padding-top: 20px;
+    }
+}

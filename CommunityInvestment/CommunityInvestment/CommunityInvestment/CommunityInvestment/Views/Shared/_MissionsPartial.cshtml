@@ -1,0 +1,112 @@
+﻿@model CommunityInvestment.Models.ViewModel.FilterViewModel
+
+<div id="first-div" style="display:none;">
+    @Model.missionCount
+</div>
+
+
+<div class="container-fluid grid-container mt-3 countmission">
+    <div class="row list">
+        @foreach (var m in Model.Filters)
+        {
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+
+                    <div class="position-relative imgsize">
+                        <img class="card-img-top"
+                         src="~/Assets/Grow-Trees-On-the-path-to-environment-sustainability.png"
+                         alt="Card image cap" style="object-fit: fill;">
+                        <div class="position-absolute c1-location py-1 px-2">
+                            <img src="~/Assets/pin.png" alt="Location">
+                            @* @m.CityName*@@m.CityName
+                        </div>
+                        <div class="position-absolute c1-heart" style="height:35px; width: 38px;">
+                            @{
+                                if (m.is_fav)
+                                {
+                                    <img src="~/Assets/heart3.png" alt="Heart" class="ps-2 py-2">
+                                   
+                                }
+                                else
+                                {
+                                    <img src="~/Assets/heart.png" alt="Heart" class="ps-2 py-2">
+                                }
+                            }
+                        </div>
+                        <div class="position-absolute c1-person" style="height:35px; width: 38px;">
+                            <img src="~/Assets/user.png" alt="" class="ps-2 py-2">
+                        </div>
+                        <div>
+                            <p class="mb-0 position-absolute px-2" id="missionTheme">@*@m.Theme.Title*@@m.ThemeTitle</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@m.Title</h5>
+                        <p class="card-text text-secondary">@m.Short_Description</p>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3 cardstar">
+                            <div class="card-text">
+                                @m.Organization_name
+                            </div>
+
+                            <div>
+
+                                @for (int i = 1; i <= m.Ratings; i++)
+                                {
+                                    <img src="~/Assets/selected-star.png" alt="" />
+                                }
+                                @for (int i = (int)m.Ratings + 1; i <= 5; i++)
+                                {
+                                    <img src="~/Assets/star.png" alt="">
+
+                                }
+                                @*<img src="~/Assets/selected-star.png" alt="">
+                                <img src="~/Assets/selected-star.png" alt="">
+                                <img src="~/Assets/selected-star.png" alt="">*@
+
+
+                            </div>
+                        </div>
+
+                        <div class="border-top border-bottom pb-3 position-relative pt-3">
+                            <div class="d-flex justify-content-between mt-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="mt-1 pe-0 me-2">
+                                        <img src="~/Assets/Seats-left.png" alt="" width="25px" height="25px">
+                                    </div>
+                                    <div class="px-0">
+                                        <h5 class="mb-0 mt-1">@(@m.Max_seats - @m.Filled_seats)</h5>
+                                        <p class="mb-0">Seats left</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="mt-1 me-2 p-0">
+                                        <img src="~/Assets/deadline.png" alt="" width="30px" height="30px">
+                                    </div>
+                                    <div class="px-0">
+                                        <h5 class="mb-0 mt-1">@m.Start_Date.ToString().Substring(0,10)</h5>
+                                        <p class="mb-0">Deadline</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roundedSection text-center position-absolute" id="missionDeadline">
+                                <p class="mb-2 px-2 text-black" style="font-size: 10px; ">
+                                    From @m.Start_Date.ToString().Substring(0,10) until @m.End_Date.ToString().Substring(0,10)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="@Url.Action("PlatformDetails", "Home", new { missionId = m.Mission_id})" id="@m.Mission_id" class="btn btn-rounded btn-outline-warning rounded-pill ps-3 pe-3 fw-bold">
+                                Apply <img src="~/Assets/right-arrow.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
