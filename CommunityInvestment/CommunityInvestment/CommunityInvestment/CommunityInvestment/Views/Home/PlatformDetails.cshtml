@@ -205,7 +205,7 @@
                                 }
                                 else
                                 {
-                                    <button id="add-fav-btn" class="mission-btn rounded-pill w-100" onclick="addToFavorites(@Model.MissionId)">
+                                    <button id="add-fav-btn" class="mission-btn rounded-pill w-100" onclick="addToFavorites(@Model.MissionId)" data-mission-id="@Model.MissionId">
                                         <i class="bi bi-heart m-2"
                                        style="color:#757575;"></i>
                                         Add to Favourite
@@ -215,10 +215,46 @@
 
                         </div>
                         <div class="col-lg-6 pt-2">
-                            <button class="mission-btn rounded-pill w-100">
+                            <button class="mission-btn rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#recommendCoworkersModal">
                                 <i class="bi bi-people m-1"></i>Recommend
                                 to a Co-Worker
                             </button>
+
+                            <!-- Modal window -->
+                            <div class="modal fade" id="recommendCoworkersModal" tabindex="-1" aria-labelledby="recommendCoworkersModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="recommendCoworkersModalLabel">Recomment to a Co-workers</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+
+                                            <div class="mb-3">
+                                                <label for="coworkersList" class="form-label">Coworkers List:</label>
+
+                                                @foreach (var item in Model.UserRecom)
+                                                {
+                                                    <div class="form-check">
+                                                        <input class="form-check-input user-check" type="checkbox" name="coworkersList" data-user-id="@item.Userid" alue="@item.Userid">
+                                                        <label class="form-check-label" for="coworker-@item.Userid">@item.Firstname @item.Secondname</label>
+                                                    </div>
+                                                }
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-primary" id="Recommend" data-mission-id="@Model.MissionId">Submit</button>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -395,7 +431,7 @@
                                 <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                                     <div>
                                         <div class="divces d-flex m-4">
-                                            <img src="~/Assets/ces.png" alt="" style="">
+                                            @*<img src="~/Assets/ces.png" alt="" style="">*@
                                             <div class="divname ms-5 mt-3">
                                                 <p style="font-size: 25px;">@Model.Organization_name</p>
                                                 <div class="d-flex">
@@ -1068,14 +1104,17 @@
     </div>
 </div>
 
-<script src="~/js/removefromfavorites.js"></script>
-<script src="~/js/addtofavorites.js"></script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/RemoveFromFavorites.js"></script>
+<script src="~/js/addToFavorites.js"></script>
 
 <script>
     $('input[type="radio"][name="rating"]').click(function () {
-       
+
         var rating = $(this).data('rating');
         var missionId = '@Model.MissionId';
+        debugger
         $.ajax({
             url: '/Home/RateMission',
             type: 'POST',
@@ -1095,4 +1134,13 @@
         });
     });
 
+
+
+
 </script>
+
+<link href="~/css/recommentusers.css" rel="stylesheet" />
+<script src="~/js/UsersRecom.js"></script>
+
+
+

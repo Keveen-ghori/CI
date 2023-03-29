@@ -1,6 +1,7 @@
 ﻿function addToFavorites(missionId) {
+
     $.ajax({
-        url: "/Home/addToFavorites",
+        url: "/Home/addToFavorites?_=" + new Date().getTime(),
         type: "POST",
         data: { missionId: missionId },
         success: function (result) {
@@ -9,9 +10,14 @@
                 $('#add-fav-btn').attr('onclick', 'removeFromFavorites(' + missionId + ')');
 
             }
+
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
         }
     });
 }
+
+
+
+

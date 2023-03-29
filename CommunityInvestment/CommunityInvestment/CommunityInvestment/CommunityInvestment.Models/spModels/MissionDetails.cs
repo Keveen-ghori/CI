@@ -19,7 +19,6 @@ namespace CommunityInvestment.Models.spModels
         public string CityName { get; set; }
         public string goal_objective_text { get; set; }
         public int? goal_value { get; set; }
-        public long User_id { get; set; }
         public long? from_user_id { get; set; }
         public long? to_user_id { get; set; }
         public int? Rating { get; set; }
@@ -43,5 +42,7 @@ namespace CommunityInvestment.Models.spModels
         public bool Availability { get; set; }
 
         public int? UserCount { get; set; }
+        
+        public List<spUsersRecom> UserRecom { get; set; }
     }
 }

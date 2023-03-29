@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
@@ -48,7 +50,7 @@ namespace CommunityInvestment.Controllers
                 List<SpFilterModel> model = _d.GetMissions.FromSqlInterpolated($@"Exec FilterMissions @loggedInUserId = {userId}, @pageNumber = {1}, @pageSize = {6}").ToList();
 
 
-              
+
                 filterViewModel.Filters = model;
 
                 return View(filterViewModel);
@@ -182,65 +184,35 @@ namespace CommunityInvestment.Controllers
                     }
                 }
 
-                using (SqlCommand cmd = new("spMissionDetails", connection))
+                using (SqlCommand cmdUser = new("spUsersRecom", connection))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandTimeout = 120;
-                    using (SqlDataAdapter adapter = new(cmd))
+                    cmdUser.CommandType = CommandType.StoredProcedure;
+                    cmdUser.CommandTimeout = 120;
+                    using (SqlDataAdapter adapter = new(cmdUser))
                     {
-                        cmd.Parameters.AddWithValue("@missionId", missionId);
-                        cmd.Parameters.AddWithValue("@userId", userId);
-                        
-                        cmd.Parameters.Add("@addToFavorites", SqlDbType.Bit).Value = DBNull.Value;
-                        cmd.Parameters.Add("@removeFromFavorites", SqlDbType.Bit).Value = DBNull.Value;
+                        cmdUser.Parameters.AddWithValue("@loggedInUserId", Convert.ToInt64(userId));
                         try
                         {
                             DataSet ds = new();
                             adapter.Fill(ds);
-                            if (ds.Tables[0].Rows.Count > 0)
+                            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                             {
-                               
-                                missionDetails.MissionId = (long)ds.Tables[0].Rows[0]["Mission_id"];
-                                missionDetails.Title = (string)ds.Tables[0].Rows[0]["Title"];
-                                missionDetails.Short_Description = (string)ds.Tables[0].Rows[0]["Short_Description"];
-                                missionDetails.Description = (string)ds.Tables[0].Rows[0]["Description"];
-                                missionDetails.Mission_type = (bool)ds.Tables[0].Rows[0]["Mission_type"];
-                                missionDetails.Start_Date = (DateTime)ds.Tables[0].Rows[0]["Start_Date"];
-                                missionDetails.End_Date = (DateTime)ds.Tables[0].Rows[0]["End_Date"];
-                                missionDetails.CityName = (string)ds.Tables[0].Rows[0]["CityName"];
-                                missionDetails.goal_objective_text = ds.Tables[0].Rows[0]["goal_objective_text"] == DBNull.Value ? "" : (string)ds.Tables[0].Rows[0]["goal_objective_text"];
-                                
-                                missionDetails.goal_value = ds.Tables[0].Rows[0]["goal_value"] == DBNull.Value ? null : (int?)ds.Tables[0].Rows[0]["goal_value"]; ;
-                                missionDetails.from_user_id = ds.Tables[0].Rows[0]["from_user_id"] == DBNull.Value ? null : (long?)ds.Tables[0].Rows[0]["from_user_id"];
-                                missionDetails.to_user_id = ds.Tables[0].Rows[0]["to_user_id"] == DBNull.Value ? null : (long?)ds.Tables[0].Rows[0]["to_user_id"];
-                                missionDetails.Rating = ds.Tables[0].Rows[0]["Rating"] == DBNull.Value ? null : (int?)ds.Tables[0].Rows[0]["Rating"];
-                                missionDetails.Organization_name = ds.Tables[0].Rows[0]["Organization_name"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["Organization_name"];
-                                missionDetails.Organization_detail = ds.Tables[0].Rows[0]["Organization_detail"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["Organization_detail"];
-                                missionDetails.ThemeTitle = (string)ds.Tables[0].Rows[0]["ThemeTitle"];
-                                missionDetails.Comment_id = ds.Tables[0].Rows[0]["Comment_id"] == DBNull.Value ? null : (long?)ds.Tables[0].Rows[0]["Comment_id"];
-                                missionDetails.comment_text = ds.Tables[0].Rows[0]["comment_text"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["comment_text"];
+                                List<spUsersRecom> userRecomList = new();
 
+                                foreach (DataRow row in ds.Tables[0].Rows)
+                                {
+                                    long UserId = (long)row["User_id"];
+                                    string Firstname = (string)row["First_name"];
+                                    string Secondname = (String)row["Second_name"];
 
-                                List<string> skills = ds.Tables[0].AsEnumerable()
-                                     .Select(row => row.Field<string>("skill_name"))
-                                     .Where(name => !string.IsNullOrEmpty(name))
-                                     .ToList();
-                                missionDetails.skill_name = skills;
-                                //ds.Tables[0].Rows[0]["skill_name"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["skill_name"]
-
-                                missionDetails.media_name = ds.Tables[0].Rows[0]["media_name"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["media_name"];
-                                missionDetails.media_path = ds.Tables[0].Rows[0]["media_path"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["media_path"];
-                                missionDetails.media_type = ds.Tables[0].Rows[0]["media_type"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["media_type"];
-                                missionDetails.is_applied = Convert.ToBoolean(ds.Tables[0].Rows[0]["is_applied"]);
-                                missionDetails.Availability = Convert.ToBoolean(ds.Tables[0].Rows[0]["Availability"]);
-                                missionDetails.is_favorite = Convert.ToBoolean(ds.Tables[0].Rows[0]["is_favorite"]);
-                                missionDetails.Max_seats = ds.Tables[0].Rows[0]["Max_seats"] == DBNull.Value ? null : (int?)ds.Tables[0].Rows[0]["Max_seats"];
-                                missionDetails.filled_seats = ds.Tables[0].Rows[0]["filled_seats"] == DBNull.Value ? null : (int?)ds.Tables[0].Rows[0]["filled_seats"];
-                               
+                                    userRecomList.Add(new spUsersRecom { Userid = UserId, Firstname = Firstname, Secondname = Secondname });
+                                }
+                                missionDetails.UserRecom = userRecomList;
 
                             }
-                            connection.Close();
-                            return View(missionDetails);
+
+                            cmdUser.ExecuteNonQuery();
+
                         }
                         catch (Exception)
                         {
@@ -274,6 +246,77 @@ namespace CommunityInvestment.Controllers
                         }
                     }
                 }
+
+                using (SqlCommand cmd = new("spMissionDetails", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 120;
+                    using (SqlDataAdapter adapter = new(cmd))
+                    {
+                        cmd.Parameters.AddWithValue("@missionId", missionId);
+                        cmd.Parameters.AddWithValue("@userId", userId);
+
+                        cmd.Parameters.Add("@addToFavorites", SqlDbType.Bit).Value = DBNull.Value;
+                        cmd.Parameters.Add("@removeFromFavorites", SqlDbType.Bit).Value = DBNull.Value;
+                        try
+                        {
+                            DataSet ds = new();
+                            adapter.Fill(ds);
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+
+                                missionDetails.MissionId = (long)ds.Tables[0].Rows[0]["Mission_id"];
+                                missionDetails.Title = (string)ds.Tables[0].Rows[0]["Title"];
+                                missionDetails.Short_Description = (string)ds.Tables[0].Rows[0]["Short_Description"];
+                                missionDetails.Description = (string)ds.Tables[0].Rows[0]["Description"];
+                                missionDetails.Mission_type = (bool)ds.Tables[0].Rows[0]["Mission_type"];
+                                missionDetails.Start_Date = (DateTime)ds.Tables[0].Rows[0]["Start_Date"];
+                                missionDetails.End_Date = (DateTime)ds.Tables[0].Rows[0]["End_Date"];
+                                missionDetails.CityName = (string)ds.Tables[0].Rows[0]["CityName"];
+                                missionDetails.goal_objective_text = ds.Tables[0].Rows[0]["goal_objective_text"] == DBNull.Value ? "" : (string)ds.Tables[0].Rows[0]["goal_objective_text"];
+
+                                missionDetails.goal_value = ds.Tables[0].Rows[0]["goal_value"] == DBNull.Value ? null : (int?)ds.Tables[0].Rows[0]["goal_value"]; ;
+                                missionDetails.from_user_id = ds.Tables[0].Rows[0]["from_user_id"] == DBNull.Value ? null : (long?)ds.Tables[0].Rows[0]["from_user_id"];
+
+                                missionDetails.to_user_id = ds.Tables[0].Rows[0]["to_user_id"] == DBNull.Value ? null : (long?)ds.Tables[0].Rows[0]["to_user_id"];
+                                missionDetails.Rating = ds.Tables[0].Rows[0]["Rating"] == DBNull.Value ? null : (int?)ds.Tables[0].Rows[0]["Rating"];
+                                missionDetails.Organization_name = ds.Tables[0].Rows[0]["Organization_name"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["Organization_name"];
+                                missionDetails.Organization_detail = ds.Tables[0].Rows[0]["Organization_detail"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["Organization_detail"];
+                                missionDetails.ThemeTitle = (string)ds.Tables[0].Rows[0]["ThemeTitle"];
+                                missionDetails.Comment_id = ds.Tables[0].Rows[0]["Comment_id"] == DBNull.Value ? null : (long?)ds.Tables[0].Rows[0]["Comment_id"];
+                                missionDetails.comment_text = ds.Tables[0].Rows[0]["comment_text"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["comment_text"];
+
+
+                                List<string> skills = ds.Tables[0].AsEnumerable()
+                                     .Select(row => row.Field<string>("skill_name"))
+                                     .Where(name => !string.IsNullOrEmpty(name))
+                                     .ToList();
+                                missionDetails.skill_name = skills;
+                                //ds.Tables[0].Rows[0]["skill_name"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["skill_name"]
+
+                                missionDetails.media_name = ds.Tables[0].Rows[0]["media_name"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["media_name"];
+                                missionDetails.media_path = ds.Tables[0].Rows[0]["media_path"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["media_path"];
+                                missionDetails.media_type = ds.Tables[0].Rows[0]["media_type"] == DBNull.Value ? "" : (string?)ds.Tables[0].Rows[0]["media_type"];
+                                missionDetails.is_applied = Convert.ToBoolean(ds.Tables[0].Rows[0]["is_applied"]);
+                                missionDetails.Availability = Convert.ToBoolean(ds.Tables[0].Rows[0]["Availability"]);
+                                missionDetails.is_favorite = Convert.ToBoolean(ds.Tables[0].Rows[0]["is_favorite"]);
+                                missionDetails.Max_seats = ds.Tables[0].Rows[0]["Max_seats"] == DBNull.Value ? null : (int?)ds.Tables[0].Rows[0]["Max_seats"];
+                                missionDetails.filled_seats = ds.Tables[0].Rows[0]["filled_seats"] == DBNull.Value ? null : (int?)ds.Tables[0].Rows[0]["filled_seats"];
+
+
+                            }
+                            connection.Close();
+                            return View(missionDetails);
+                        }
+                        catch (Exception)
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+
+
+
             }
 
 
@@ -326,7 +369,7 @@ namespace CommunityInvestment.Controllers
 
             if (favoriteMission == null)
             {
-         
+
                 // Add the mission to the favorite list
                 _d.FavouritMissions.Add(new FavouritMission { UserId = userId, MissionId = missionId });
                 _d.SaveChanges();
@@ -351,6 +394,40 @@ namespace CommunityInvestment.Controllers
             {
                 return Json(new { success = false, message = ex.Message });
             }
+        }
+
+        public IActionResult RecommendUsers(string userId, long missionId)
+        {
+            string userIdjson = userId;
+            var userIds = userId.Split(',');
+
+
+            string value = JsonConvert.DeserializeObject<string>(userIdjson);
+
+            long[] user_Ids = value.Split(',').Select(long.Parse).ToArray();
+
+            if (string.IsNullOrEmpty(user_Ids))
+            {
+                return RedirectToAction("RecommendUsers");
+            }
+        
+
+
+            
+
+            List<string> recommendedEmails = new List<string>();
+
+            foreach (long id in user_Ids)
+            {
+                var user = _d.Users.FirstOrDefault(u => u.UserId == id);
+
+                if (user != null)
+                {
+                    recommendedEmails.Add(user.Email);
+                }
+            }
+
+            return Json(new { success = true, emails = recommendedEmails });
         }
 
     }
